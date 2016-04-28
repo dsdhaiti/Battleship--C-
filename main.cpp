@@ -6,36 +6,63 @@
 //  Copyright (c) 2016 David D'Haiti. All rights reserved.
 //
 
-//                      DO NOT CODE TILL ALGORITHIM IS CREATED
+
 
 
 
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <fstream>
+
+const char xAxis = 25;
+const char yAxis = 25;
 
 using namespace std;
 
-int main() {
-   const int xAxis = 25;
-    const int yAxis =25;
+int main(){
     
-        for (int i = 0; i < xAxis; i++){
-            cout << '~';
-            for (int j = 0; j < yAxis; j++){
-                cout << setw(2) << '~';
-            }
-            cout << endl;
+    int XVal;
+    int YVal;
+    char Board_Size[xAxis][yAxis];
+    ifstream input;
+    
+    
+    input.open("Master_table.txt");
+    
+    cout << "lets play BattleShip" << endl;
+    for (int i = 0; i < xAxis; i++){
+        for (int j = 0; j < yAxis; j++){
+            input >> Board_Size[i][j];
         }
-  
-
+    }
+    
+    for (int i = 0; i < xAxis; i++){
+        for (int j = 0; j < yAxis; j++){
+            cout << Board_Size[i][j];
+        }
+        cout << endl;
+    }
+    
+    cout << " to attack please give an x and y value  " << endl;
+    do {
+        cout << "please give an X / y value" << endl;
+        cin >> XVal;
+        cin >> YVal;
+        cout << "your point of attack is " << Board_Size[XVal][YVal] << endl;
+    } while (input);
+    
+    
+    input.close();
     system("pause");
     return 0;
     }
 
 
-//                      DO NOT CODE TILL ALGORITHIM IS CREATED
-// Should i use a class
+
+// Should i use a class??
+//     - i will be able to organize all my function
+//     - i can have them all communicate with them selves
 
 
 /*
@@ -58,12 +85,6 @@ int main() {
  2. SHOW BOARDS 
     * THIS IS HOW TO SHOW THE UNMARKED CHART TO THE USER(Done )
  
-        int main(){
-        int height;
-        int width;
-        int time_done = 0;
-            
- 
                 for (int i = 0; i < height; i++){
                     cout << '&';
                     for (int j = 0; j < width; j++){
@@ -72,12 +93,11 @@ int main() {
                         cout   << endl;
                     }
  
-                system("pause");
-                return 0;
- 
- 3. PROMPT PLAYER ON HOW TO ATTACK A CERTIAN AREA
+ 3. PROMPT PLAYER ON HOW TO ATTACK A CERTIAN AREA(Done )
     - tell to attack 
     - how does it work when he attacks
+        * put their point of attack in to an array 
+        *
  
             * if i did it using a class what would my 
                     -funcitons
